@@ -1,0 +1,71 @@
+.spoonacular-quickview {
+    border: 1px solid;
+    margin: 6px;
+    display: initial;
+    font-weight: 600;
+    padding: 6px;
+    font-family: "Roboto";
+    border-radius: 9px;
+}
+
+.spoonacular-caption {
+    font-family: 'Merriweather Sans';
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background: linear-gradient(45deg, #ff5454, transparent);
+}
+.spoonacular-nutrient-name {
+    display: inline-flex;
+    font-weight: 600;
+    font-family: 'Signika Negative';
+    border: 1px solid transparent;
+    width: 6em;
+    
+}
+.spoonacular-nutrient-value {
+    display: inline-flex;
+    margin: 4px;
+    font-family:monospace;
+    font-weight: 500;
+    
+    border: 1px solid transparent;
+    width: 4em;
+}
+
+/* Bar Css */
+.spoonacular-nutrition-visualization-bar-number.spoonacular-blue {
+    margin-right: 0px;
+    margin-top : -21px;
+    margin-right: 40vw;   
+}
+ 
+.spoonacular-nutrition-visualization-bar.spoonacular-blue {
+     background: #000;
+    border: 1px solid;
+    display: inline-flex;
+    width: 21.25%;
+    background: #ff5454;
+    border: 1px solid #ff6868;
+    margin-left: 40px; 
+    padding: 4px;
+/*    float: right;*/
+    margin-top: 7px;
+}
+.spoonacular-nutrition-visualization-bar.spoonacular-salmon {
+    
+    background: #000;
+    border: 1px solid;
+    display: inline-flex;
+    width: 21.25%;
+    background: #ff5454;
+    border: 1px solid #ff6868;
+    margin-left: 40px; 
+    padding: 4px;
+/*    float: right;*/
+    margin-top: 7px;
+}
+.spoonacular-nutrition-visualization-bar-number.spoonacular-salmon {
+    margin-right: 0px;
+    margin-top : -21px;
+    margin-right: 40vw;
+}
