@@ -1,7 +1,7 @@
 .spoonacular-quickview {
     border: 1px solid;
     margin: 6px;
-    display: initial;
+    display: inline-grid;
     font-weight: 600;
     padding: 6px;
     font-family: "Roboto";
@@ -11,6 +11,8 @@
 .spoonacular-caption {
     font-family: 'Merriweather Sans';
     margin-bottom: 5px;
+    display: flex;
+    padding-left: 8px;
     margin-top: 5px;
     background: linear-gradient(45deg, #ff5454, transparent);
 }
@@ -44,8 +46,8 @@
     border: 1px solid;
     display: inline-flex;
     width: 21.25%;
-    background: #ff5454;
-    border: 1px solid #ff6868;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    border: 1px solid #ff686800;
     margin-left: 40px; 
     padding: 4px;
 /*    float: right;*/
@@ -57,8 +59,8 @@
     border: 1px solid;
     display: inline-flex;
     width: 21.25%;
-    background: #ff5454;
-    border: 1px solid #ff6868;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    border: 1px solid #ff686800;
     margin-left: 40px; 
     padding: 4px;
 /*    float: right;*/

@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   box :{
     overflowY:"scroll",
+    overflow:"hidden",
     height: "75vh",
   },
 }));

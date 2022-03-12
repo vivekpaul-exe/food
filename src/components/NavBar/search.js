@@ -1,7 +1,7 @@
 import React,{useState} from "react"
 import Axios from "axios"
 import {v4 as uuidv4} from "uuid"
-import RecipeModal from "./RecipeModal"
+import SearchList from "./SearchList"
 import dotenv from "dotenv"
 import { Input, Icon } from "atomize";
 
@@ -70,7 +70,7 @@ export default function Searchbar() {
       
     </form>
     <div className="recipes">
-        {recipes?.map(recipe => <RecipeModal key={uuidv4()} recipe={recipe} />)}
+        {recipes?.map(recipe => <SearchList key={uuidv4()} recipe={recipe} />)}
       </div>
     </>
   )

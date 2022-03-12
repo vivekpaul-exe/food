@@ -11,7 +11,7 @@ export const Mainapp = () => {
    
 
     return (
-        <Container className = "box_con" maxWidth style={{marginTop  :  '4px'}} >
+        <Container className = "box_con" maxWidth="lg" style={{marginTop  :  '4px'}} >
           <Grow in>
 
                 <Home />

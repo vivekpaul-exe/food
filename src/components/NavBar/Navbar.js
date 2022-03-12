@@ -67,6 +67,7 @@ export default function Navbar() {
     
     >
       <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Recipes</ListItem>
+      <divider/>
       <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Ingredients</ListItem>
       <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Cuisines</ListItem>
       <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Wines</ListItem>
@@ -165,7 +166,7 @@ export default function Navbar() {
          
           </div>
           <div className={classes.sectionMobile}>
-            <Button
+            <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
@@ -173,7 +174,7 @@ export default function Navbar() {
               color="inherit"
             >
              <Icon name="Menu" size="40px" />
-            </Button>
+            </IconButton>
           </div>
         </Toolbar>
        
