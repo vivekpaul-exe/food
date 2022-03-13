@@ -19,7 +19,7 @@ export const Mainapp = () => {
 
 
           </Grow>
-                          <StickyFooter />
+                <StickyFooter />
 
         </Container>
     )

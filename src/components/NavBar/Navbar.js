@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from "atomize"
+import {Link} from "react-router-dom"
 import { alpha ,makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,7 +18,7 @@ import Button from '@material-ui/core/Button';
 import Searchbar from './search';
 import SearchModal from './searchBar';
 // import RecipeModal from '../Modal/Modal';
-
+import { IngredientsPage } from '../Pages/IngredientsPage';
 
 
 
@@ -85,15 +86,7 @@ export default function Navbar() {
 
 
     <div>
-    <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerOpen}
-           
-          >
-           
-          </IconButton>
+    
         <Drawer
         className={classes.drawer}
        
@@ -138,8 +131,9 @@ export default function Navbar() {
           {/* <Button edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 
           </Button> */}
-          <Typography><Box className={classes.title}>
-            foodster</Box>
+          <Typography>
+            <Link to="/"><Box className={classes.title}>
+            foodster</Box></Link>
           </Typography>
          {/* <Searchbar/> */}
          <SearchModal/>

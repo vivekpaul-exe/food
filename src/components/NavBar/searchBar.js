@@ -121,7 +121,7 @@ export default function SearchModal() {
           <Box>
           <form onSubmit={OnSubmit} className = {classes.searchForm}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Search modal</h2>
+            
             <InputBase
               className={classes.margin}
               placeholder="search your intrests"

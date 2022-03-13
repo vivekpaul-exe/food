@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import RecipeModal from './Pages/RecipeModal';
 import {Menu  , MenuItem } from "@material-ui/core"
-import InfoModal from './Pages/infoPage';
+import InfoModal from './Pages/infoModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,53 +1,38 @@
-import React from "React "
+import React from "react"
 
 import {BrowserRouter as Router,
-        Switch,
+        Routes,
         Route,
-        Link,
+       
 
         } from "react-router-dom"
 import StickyFooter from "./components/Footer"
-
+import Navbar from "./components/NavBar/Navbar"
 import Home from "./components/Home"
-import RecipeModal from "./components/Pages/RecipeModal"
+import { CuisinePage } from "./components/Pages/CuisinePage";
+import { InfoPage} from "./components/Pages/InfoPage"
+import  { RecipePage } from "./components/Pages/RecipePage"
+import {WinePage} from "./components/Pages/Wines"
+import  { ItemList } from "./components/Pages/ItemList"
+import { IngredientsPage } from "./components/Pages/IngredientsPage";
 
-const routes = [
-    {
-        path : "/Home",
-        component: Home
-    },
-    {
-        path : "/details",
-        component : InfoPage
-    },
-    {
-        path : "/search",
-        component : RecipeModal
-    }
 
-]
+
 export default function RouteConfig(){
     return (
         <Router>
              <Navbar />
-             <Switch>
-                 {routes.map((route,i) => (
-                     <RouteWithSubRoutes key={i} {...route} />
-                 ))}
-             </Switch>
+             <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/info" element={<InfoPage />} />
+                <Route path="/ingredients" element={<IngredientsPage />} />
+                <Route path="/recipe" element={<RecipePage />} />
+                <Route path="/Cuisines" element={<CuisinePage />} />
+                <Route path="/wines" element={<WinePage />} />
+                <Route path="/itemspage" element={<ItemList />} />
+             </Routes>
              <StickyFooter/>
         </Router>
        
     )
 }
-function RouteWithSubRoutes(route) {
-    return (
-      <Route
-        path={route.path}
-        render={props => (
-          // pass the sub-routes down to keep nesting
-          <route.component {...props} routes={route.routes} />
-        )}
-      />
-    );
-  }
