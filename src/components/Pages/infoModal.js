@@ -67,7 +67,7 @@ export default function InfoModal(props) {
    
      const  response = await axios.get(url);
      setData(response.data)
-     console.log(response , "Info modal")
+     // console.log(response , "Info modal")
   }
   return (
     <div>
