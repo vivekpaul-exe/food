@@ -57,7 +57,7 @@ export default function RecipeModal(props) {
 
       
 
-    console.log(response,  "Here !!!");
+    //console.log(response,  "Here !!!");
     setImgurl(response.data.url);
     return response;
 
