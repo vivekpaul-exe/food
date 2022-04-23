@@ -10,7 +10,7 @@ import StickyFooter from "./components/Footer"
 import Navbar from "./components/NavBar/Navbar"
 import Home from "./components/Home"
 import { CuisinePage } from "./components/Pages/CuisinePage";
-import { InfoPage} from "./components/Pages/InfoPage"
+import { InfoPage} from "./components/Pages/infoPage"
 import   RecipePage  from "./components/Pages/RecipePage"
 import {WinePage} from "./components/Pages/Wines"
 import  { ItemList } from "./components/Pages/ItemList"
