@@ -42,7 +42,7 @@ export default function  ContainerR() {
       <Grid container spacing ={2}>
         <Grid className={classes.griditem}   item xs={6}>
           <Box className={classes.boxitem1}>
-          <img className = {classes.img3} src={image2} alt="food "/>
+      <img className = {classes.img3} src={image2} alt="food "/>
           </Box>
         </Grid>
         <Grid className={classes.griditem} item xs={6}>

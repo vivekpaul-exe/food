@@ -67,7 +67,7 @@ export default function  Containertop() {
         </Grid>
         <Grid className={classes.griditem} item xs={12} sm={6}>
           <Box className={classes.boxitem1}>
-            <img className = {classes.img} src={image} alt ="food "/>
+          <img className = {classes.img} src={image} alt ="food "/>
           </Box>
         </Grid>
       </Grid>

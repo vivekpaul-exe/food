@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from "axios"
 import {v4 as uuidv4} from "uuid"
-import {  Container, Box,ButtonBase,CircularProgress,InputBase } from '@material-ui/core';
+import {   Paper ,Container, Box,ButtonBase,CircularProgress,InputBase } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop:"5vh",
     justifyContent: 'center',
   },
+  con_paper :{
+    padding: 4,
+    borderRadius: 15,
+  },
   Search:{
     marginLeft:15,
     
@@ -26,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   searchbutton:{
     color:"#424242",
     padding:12,
+    background: "#8080801f",
+    borderRadius: 11,
+    width:"10vw"
   },
   searchTag:{
     color:"#424224",
@@ -118,7 +125,7 @@ export default function SearchModal() {
         }}
       >
         <Fade in={open}>
-          <Box>
+          <Paper className = {classes.con_paper}>
           <form onSubmit={OnSubmit} className = {classes.searchForm}>
           <div className={classes.paper}>
             
@@ -141,7 +148,7 @@ export default function SearchModal() {
                         {recipes?.map(recipe => 
                         <Grow in>
                         <SearchList 
-                         
+                          _id = {recipe.id}
                           key={uuidv4()} 
                           title={recipe.title}  
                           img={recipe.image} 
@@ -149,7 +156,7 @@ export default function SearchModal() {
                           
                           </Box>
                           </Grow>
-                  </Box>
+                  </Paper>
         </Fade> 
 
       </Modal>

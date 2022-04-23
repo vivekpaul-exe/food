@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchList({title , img}) {
+export default function SearchList({_id ,title , img}) {
   const classes = useStyles();
 
   return (  
     <Grow in>
     <List className={classes.root}>
 
-      <ListItem className={classes.listitem}>
+      <ListItem className={classes.listitem} href = "recipe" id={_id}>
         <ListItemAvatar>
         <Avatar alt={title} src={img} />
         </ListItemAvatar>

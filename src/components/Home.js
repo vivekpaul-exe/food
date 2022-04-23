@@ -7,6 +7,7 @@ import { Row, Col, Div } from "atomize";
 import {REACT_APP_SOME_API_KEY} from "../index"
 import {makeStyles} from "@material-ui/core/styles";
 import Containertop from "./Container/Containertop"
+import {Container } from "@material-ui/core"
 import ContainerR from "./Container/ContainerR"
 import ContainerS from "./Container/ContainerS"
 
@@ -55,10 +56,13 @@ export default function Home() {
 
     
   return (
+
     <div className ={classes.containerBox}>
-      <Containertop />
-      <ContainerR />
-      <ContainerS />
+      <Container maxWidth="xl">
+        <Containertop />
+        <ContainerR />
+        <ContainerS />
+      
       <Row>
 
       <Col size={{ xs: 12, lg: 3 }}>
@@ -89,8 +93,9 @@ export default function Home() {
         </Row>
 
 
-
+        </Container>
     </div>
+    
 
   )
 }

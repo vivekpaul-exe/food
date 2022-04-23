@@ -67,12 +67,12 @@ export default function Navbar() {
   
     
     >
-      <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Recipes</ListItem>
+      <ListItem button href="recipe" className={classes.listitem} onClick={handleDrawerClose}>Recipes</ListItem>
       <divider/>
-      <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Ingredients</ListItem>
-      <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Cuisines</ListItem>
-      <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Wines</ListItem>
-      <ListItem button className={classes.listitem} onClick={handleDrawerClose}>Item List</ListItem>
+      <ListItem button  href="ingredients" className={classes.listitem} onClick={handleDrawerClose}>Ingredients</ListItem>
+      <ListItem button  href="Cuisines" className={classes.listitem} onClick={handleDrawerClose}>Cuisines</ListItem>
+      <ListItem button  href="wines" className={classes.listitem} onClick={handleDrawerClose}>Wines</ListItem>
+      <ListItem button  href="itemspage" className={classes.listitem} onClick={handleDrawerClose}>Item List</ListItem>
     </List>
   );
 
@@ -132,27 +132,37 @@ export default function Navbar() {
 
           </Button> */}
           <Typography>
-            <Link to="/"><Box className={classes.title}>
-            foodster</Box></Link>
+            <Box href=" " className={classes.title}>
+            foodster</Box>
           </Typography>
          {/* <Searchbar/> */}
          <SearchModal/>
           <div className = {classes.grow} />
           <div className = {classes.sectionDesktop}>
 
-          <Button className ={classes.toolbutton} color="inherit">
+          <Button  href="recipe"  className ={classes.toolbutton} color="inherit">
             <Box>
-              Login
+              Recipes
               </Box>
             </Button>
-            <Button className ={classes.toolbutton} color="inherit">
+            <Button  href="ingredients" className ={classes.toolbutton} color="inherit">
             <Box>
-              search 
+              Ingredients 
               </Box>
             </Button>
-            <Button className ={classes.toolbutton} color="inherit">
+            <Button href="Cuisines" className ={classes.toolbutton} color="inherit">
             <Box>
-              recipes
+              Cuisines
+              </Box>
+            </Button>
+            <Button href="wines" className ={classes.toolbutton} color="inherit">
+            <Box>
+              Wines
+              </Box>
+            </Button>
+            <Button href="itemspage" className ={classes.toolbutton} color="inherit">
+            <Box>
+              Item List
               </Box>
             </Button>
            
@@ -273,11 +283,11 @@ const useStyles = makeStyles((theme) => ({
  },
   
   toolbutton :{
-    color: "black",
-    fontWeight: "800",
-    fontFamily:  "'Heebo', sans-serif",
+    color: "#424242",
+    fontWeight: "500",
+    fontFamily:  'Merriweather Sans',
     fontsize : "1.5rem",
-    TextTransform : "lowercase",
+    textTransform: 'none'
   },
  
 }));

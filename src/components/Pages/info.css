@@ -47,7 +47,7 @@
     display: inline-flex;
     width: 21.25%;
     background: linear-gradient(to right, #ff9966, #ff5e62);
-    border: 1px solid #ff686800;
+    border: 0px solid #ff686800;
     margin-left: 40px; 
     padding: 4px;
 /*    float: right;*/
@@ -60,7 +60,7 @@
     display: inline-flex;
     width: 21.25%;
     background: linear-gradient(to right, #ff9966, #ff5e62);
-    border: 1px solid #ff686800;
+    border: 0px solid #ff686800;
     margin-left: 40px; 
     padding: 4px;
 /*    float: right;*/

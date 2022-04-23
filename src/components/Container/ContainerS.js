@@ -38,7 +38,7 @@ export default function  ContainerS() {
         </Grid>
         <Grid item xs={6}>
           <Box className={classes.boxitem1}>
-          <img className = {classes.img2} src={image3} alt="food"/>
+         <img className = {classes.img2} src={image3} alt="food"/>
           </Box>
         </Grid>
       </Grid>
