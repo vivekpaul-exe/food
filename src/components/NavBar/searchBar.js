@@ -60,12 +60,12 @@ export default function SearchModal() {
       if(result.data.more){
         console.log("No Food FOUND!!!")
       }
-      console.log(result);
+     
       setRecipes(result.data.results)
       setResults_no(result.data.number)
       setQuery("");
 
-      console.log(recipes,  results_no)
+      
 
     }else {
       window.alert("Nothing has been enterred")
