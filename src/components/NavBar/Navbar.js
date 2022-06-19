@@ -218,7 +218,10 @@ const useStyles = makeStyles((theme) => ({
     color:"Black",
     fontFamily:  'Merriweather Sans',
     fontSize: "2.5rem",
-
+         "&:hover" : {
+	       color:'#FE6B8B'
+       }
+    
     // [theme.breakpoints.up('sm')]: {
     //   display: 'block',
       

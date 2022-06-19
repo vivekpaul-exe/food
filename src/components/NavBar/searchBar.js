@@ -27,17 +27,32 @@ const useStyles = makeStyles((theme) => ({
     marginLeft:15,
     
   },
-  searchbutton:{
-    color:"#424242",
+  searchbutton: {
+    margin: theme.spacing(1),
+	  color:"#424242",
     padding:12,
     background: "#8080801f",
     borderRadius: 11,
     width:"10vw"
+
+  //    [theme.breakpoints.down("sm")]: {
+  //      minWidth: 32,
+  //      paddingLeft: 8,
+  //      paddingRight: 8,
+  //      "& .MuiButton-startIcon": {
+  //        margin: 0
+  //      }
+  //    }
   },
-  searchTag:{
-    color:"#424224",
+  searchTag: {
+	  color:"#424224",
     paddingLeft: 4,
+
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
+    }
   },
+ 
   reslist:{
     overflowY:"scroll",
     height :"65vh",
@@ -107,9 +122,9 @@ export default function SearchModal() {
     <div className ={classes.Search}>
       <ButtonBase className = {classes.searchbutton} type="button" onClick={handleOpen}>
         <SearchIcon />
-        <Typography className={classes.searchTag}>
+        <span className={classes.searchTag}>
           Search 
-        </Typography>
+        </span>
 
       </ButtonBase>
       <Modal
