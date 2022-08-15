@@ -6,7 +6,10 @@
 // will only see deployed updates on subsequent visits to a page, after all the
 // existing tabs open on the page have been closed, since previously cached
 // resources are updated in the background.
+// eslint-disable-next-line no-restricted-globals
+const ignored = self.__WB_MANIFEST;
 
+// Your custom service worker code goes here.
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read http://bit.ly/CRA-PWA
 
