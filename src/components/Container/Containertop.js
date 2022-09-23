@@ -79,6 +79,7 @@ export default function  Containertop() {
 const useStyles = makeStyles((theme) => ({
   box1:{
     marginTop:"1vh",
+    background :"#ffffff",
   },
   text :{
     fontSize:"3.75rem",

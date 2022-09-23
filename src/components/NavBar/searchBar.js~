@@ -35,14 +35,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 11,
     width:"10vw"
 
-    // [theme.breakpoints.down("sm")]: {
-    //   minWidth: 32,
-    //   paddingLeft: 8,
-    //   paddingRight: 8,
-    //   "& .MuiButton-startIcon": {
-    //     margin: 0
-    //   }
-    // }
+  //    [theme.breakpoints.down("sm")]: {
+  //      minWidth: 32,
+  //      paddingLeft: 8,
+  //      paddingRight: 8,
+  //      "& .MuiButton-startIcon": {
+  //        margin: 0
+  //      }
+  //    }
   },
   searchTag: {
 	  color:"#424224",

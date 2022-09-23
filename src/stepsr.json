@@ -1,0 +1,159 @@
+[
+  {
+    "name": "",
+    "steps": [
+      {
+        "number": 1,
+        "step": "Place the butter,granulated sugar and brown sugar in a large mixing bowl.Using an electric mixer set on high speed,beat the mixture until it is light and fluffy,about 2 minutes.Reduce the mixer speed to low and add in the eggs,one at a time, and mix zest and finally the flour.When the flour mixture is totally incorporated,mix in the chocolate chips and nuts.Drop the dough by rounded tablespoons on the prepared sheets,placing the portions 2 inches apart.",
+        "ingredients": [
+          {
+            "id": 10719335,
+            "name": "granulated sugar",
+            "localizedName": "granulated sugar",
+            "image": "sugar-in-bowl.png"
+          },
+          {
+            "id": 99278,
+            "name": "chocolate chips",
+            "localizedName": "chocolate chips",
+            "image": "chocolate-chips.jpg"
+          },
+          {
+            "id": 19334,
+            "name": "brown sugar",
+            "localizedName": "brown sugar",
+            "image": "dark-brown-sugar.png"
+          },
+          {
+            "id": 1001,
+            "name": "butter",
+            "localizedName": "butter",
+            "image": "butter-sliced.jpg"
+          },
+          {
+            "id": 0,
+            "name": "dough",
+            "localizedName": "dough",
+            "image": "pizza-dough"
+          },
+          {
+            "id": 20081,
+            "name": "all purpose flour",
+            "localizedName": "all purpose flour",
+            "image": "flour.png"
+          },
+          {
+            "id": 1123,
+            "name": "egg",
+            "localizedName": "egg",
+            "image": "egg.png"
+          },
+          {
+            "id": 12135,
+            "name": "nuts",
+            "localizedName": "nuts",
+            "image": "nuts-mixed.jpg"
+          }
+        ],
+        "equipment": [
+          {
+            "id": 404628,
+            "name": "hand mixer",
+            "localizedName": "hand mixer",
+            "image": "hand-mixer.png"
+          },
+          {
+            "id": 405907,
+            "name": "mixing bowl",
+            "localizedName": "mixing bowl",
+            "image": "mixing-bowl.jpg"
+          },
+          {
+            "id": 404726,
+            "name": "blender",
+            "localizedName": "blender",
+            "image": "blender.png"
+          }
+        ],
+        "length": {
+          "number": 2,
+          "unit": "minutes"
+        }
+      },
+      {
+        "number": 2,
+        "step": "Bake the cookies,one sheet at a time, until they just begin to brown around the edges,10-12 minutes.The center should remain pale.",
+        "ingredients": [
+          {
+            "id": 10118192,
+            "name": "cookies",
+            "localizedName": "cookies",
+            "image": "shortbread-cookies.jpg"
+          }
+        ],
+        "equipment": [
+          {
+            "id": 404784,
+            "name": "oven",
+            "localizedName": "oven",
+            "image": "oven.jpg"
+          }
+        ],
+        "length": {
+          "number": 12,
+          "unit": "minutes"
+        }
+      },
+      {
+        "number": 3,
+        "step": "Let the cookies cool on the baking sheets for 2 minutes,then transfer them to a wire rack to cool.",
+        "ingredients": [
+          {
+            "id": 10118192,
+            "name": "cookies",
+            "localizedName": "cookies",
+            "image": "shortbread-cookies.jpg"
+          }
+        ],
+        "equipment": [
+          {
+            "id": 404727,
+            "name": "baking sheet",
+            "localizedName": "baking sheet",
+            "image": "baking-sheet.jpg"
+          },
+          {
+            "id": 405900,
+            "name": "wire rack",
+            "localizedName": "wire rack",
+            "image": "wire-rack.jpg"
+          }
+        ],
+        "length": {
+          "number": 2,
+          "unit": "minutes"
+        }
+      },
+      {
+        "number": 4,
+        "step": "Bake the remaining cookies in the same way. (You do not have to replace the lining material for subsequent batches).Store in an airtight container at room temperature for up to 2 weeks.",
+        "ingredients": [
+          {
+            "id": 10118192,
+            "name": "cookies",
+            "localizedName": "cookies",
+            "image": "shortbread-cookies.jpg"
+          }
+        ],
+        "equipment": [
+          {
+            "id": 404784,
+            "name": "oven",
+            "localizedName": "oven",
+            "image": "oven.jpg"
+          }
+        ]
+      }
+    ]
+  }
+]

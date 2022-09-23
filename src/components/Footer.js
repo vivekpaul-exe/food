@@ -10,7 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary">
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Foodster
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -28,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
   },
+  footertitle : {
+    fontFamily :"Merriweather Sans",
+  },
   footer: {
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
+    fontFamily:"Merriweather Sans",
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
   },
@@ -54,7 +58,7 @@ export default function StickyFooter() {
       </Container> */}
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">My sticky footer can be found here.</Typography>
+          <Typography variant="body1" className={classes.footertitle}>Enjoy and Be Healthy!!!</Typography>
           <Copyright />
         </Container>
       </footer>

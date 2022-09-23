@@ -11,33 +11,39 @@ import { makeStyles } from '@material-ui/core/styles';
 import {REACT_APP_SOME_API_KEY} from "../../index";
 import RecipeSteps from "./steps"
 export default function RecipePage(props){
-    const [information , setInformation] = React.useState('')
-    // const [id , setId]= React.useState(props.id);
-    const [recipe_steps , setRecipe_steps] = React.useState([])
-   // const [recipe,setRecipe] = React.useState('');
+    const [information , setInformation] = React.useState('');
+//    const [id , setId]= React.useState(props.id);
+    const [recipe_steps , setRecipe_steps] = React.useState([]);
+    const [showLoading , setShowLoading] = React.useState(true);
+    const [recipe,setRecipe] = React.useState('');
+    const StoredRecipeID = sessionStorage.getItem('recipe_id');
+  useEffect(()=>{
+    async function getRecipeinfo() {
+      const id = StoredRecipeID;
+	    console.log(id , "recipePage")
+      try {
+        let response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${REACT_APP_SOME_API_KEY}`)
+         let data = await response.json();
+         setInformation(data)
 
-    const get_full_info = async()  => {
-        const id1 =   "715538";
-        
-        const id = sessionStorage.getItem('_id') 
-        console.log(id, "<---- list id ")
-        const url1 = ` https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${REACT_APP_SOME_API_KEY}`;
-        const url2 = `https://api.spoonacular.com/recipes/324694/analyzedInstructions&apiKey=${REACT_APP_SOME_API_KEY}`
-        const info_url = `https://api.spoonacular.com/recipes/${id}/information&apiKey=${REACT_APP_SOME_API_KEY}`
-        const info_res = await axios.get(info_url);
-         const  response = await axios.get(url2);
-        setRecipe_steps(response.data);    
-       // setRecipe(info_res.data);
-	    {/*  setInformation(response.data) */}
-         console.log(response.data  , "Info modal") 
-	    console.log(info_res.data , "info data alert")
+        setShowLoading(false);
+      } catch (error) {
+        console.log(error)
+
       }
-    
+
+    }
+    getRecipeinfo()
+
+
+
+  },[]);
+
 
 const classes = useStyles();
     return (
         <Container maxWidth="xl">
-            
+              <p>{information}</p>
             <Box className ={classes.rec_name}>
                 {recipe.title}
                 <hr/>
@@ -68,19 +74,19 @@ const classes = useStyles();
                     <hr />
 
                     <Typography>
-                        Summary 
+                        Summary
                         <Typography dangerouslySetInnerHTML={{__html: recipe.summary}} />
-                    
+
                     </Typography>
-                        
+
                 </Grid>
-              
+
                     <Box className={classes.rsteps}>
-                       Steps  
+                       Steps
                     {/* {recipe_steps} */}
 	    		<RecipeSteps />
                    </Box>
-                   
+
             </Grid>
         </Container>
     )
@@ -97,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "1.5em",
         paddingBottom: "2vh",
         paddingTop: "2vh",
-        
+
     },
     rsteps :{
       width: "50%",
@@ -105,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
     rec_info : {
 
     },
-    
+
 }))
 
-// Data 
+// Data

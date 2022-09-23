@@ -26,15 +26,15 @@ export default function Home() {
   const [veryHealthy , setVeryHealthy] = useState('false')
   const [showLoading , setShowLoading] = useState(true);
   const [id , setId] = useState('');
- 
- 
+
+
   useEffect(()=>{
     async function getRecipe() {
-      
+
       try {
         let response = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${REACT_APP_SOME_API_KEY}`)
          let data = await response.json();
-        
+
         setTitle(data.recipes[0].title);
         setImage(data.recipes[0].image)
         setVegeterian(data.recipes[0].vegeterian)
@@ -44,17 +44,17 @@ export default function Home() {
         setShowLoading(false);
       } catch (error) {
         console.log(error)
-        
+
       }
 
     }
     getRecipe()
-  
+
 
 
   },[]);
 
-    
+
   return (
 
     <div className ={classes.containerBox}>
@@ -62,32 +62,32 @@ export default function Home() {
         <Containertop />
         <ContainerR />
         <ContainerS />
-      
+
       <Row>
 
       <Col size={{ xs: 12, lg: 3 }}>
             <Div p="4px" >
-            {showLoading ? <CircularProgress color="primary" /> : null}
-             <Content id ={id} image={image}  title= {title}  summary ={summary}   vegeterian ={vegeterian} Healthy={veryHealthy}/>
+            {showLoading ? <CircularProgress color="primary" /> :
+             <Content id ={id} image={image}  title= {title}  summary ={summary}   vegeterian ={vegeterian} Healthy={veryHealthy}/> }
             </Div>
           </Col>
           <Col  size={{ xs: 12, lg: 3 }}>
             <Div p="4px" >
-            {showLoading ? <CircularProgress color="primary" /> : null}
-          <Content id ={id} image={image}  title= {title} summary ={summary} vegeterian ={vegeterian} Healthy={veryHealthy}/>
+            {showLoading ? <CircularProgress color="primary" /> :
+          <Content id ={id} image={image}  title= {title} summary ={summary} vegeterian ={vegeterian} Healthy={veryHealthy}/>  }
             </Div>
           </Col>
           <Col size={{ xs: 12, lg: 3 }}>
             <Div p="4px" >
-            {showLoading ? <CircularProgress color="primary" /> : null}
-              <Content id ={id} image={image}  title= {title} summary ={summary} vegeterian ={vegeterian} Healthy={veryHealthy}/>
+            {showLoading ? <CircularProgress color="primary" /> :
+              <Content id ={id} image={image}  title= {title} summary ={summary} vegeterian ={vegeterian} Healthy={veryHealthy}/> }
             </Div>
           </Col>
           <Col size={{ xs: 12, lg: 3 }}>
             <Div p="4px">
 
-            {showLoading ? <CircularProgress color="primary" /> : null}
-            <Content id ={id} image={image}  title= {title} summary ={summary} vegeterian ={vegeterian} Healthy={veryHealthy}/>
+            {showLoading ? <CircularProgress color="primary" /> :
+            <Content id ={id} image={image}  title= {title} summary ={summary} vegeterian ={vegeterian} Healthy={veryHealthy}/> }
             </Div>
           </Col>
         </Row>
@@ -95,7 +95,7 @@ export default function Home() {
 
         </Container>
     </div>
-    
+
 
   )
 }

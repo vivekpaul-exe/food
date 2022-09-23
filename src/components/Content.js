@@ -9,12 +9,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
+import Link from "@material-ui/core/Link"
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import RecipeModal from './Pages/RecipeModal';
 import {Menu  , MenuItem } from "@material-ui/core"
 import InfoModal from './Pages/infoModal';
+import RecipePage from "./Pages/RecipePage"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,8 +24,16 @@ const useStyles = makeStyles((theme) => ({
        fontFamily:'Signika Negative',
   },
     title:{
-      fontFamily:'Signika Negative',
-      fontSize: "1.1rem",
+      fontFamily:'Signika Negative !important',
+      fontSize: "1.1em",
+      whiteSpace: "nowrap",
+      overflow:"hidden",
+      textOverflow:"ellipsis",
+      margin:"auto",
+
+    },
+    cardbutton:{
+      position :"absolute",
     },
   media: {
     height: 0,
@@ -57,7 +67,7 @@ export default function Content(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  
+
 
 
   const handleExpandClick = () => {
@@ -66,32 +76,25 @@ export default function Content(props) {
 
   return (
 
-    <Card className={classes.root}>
 
-      <CardHeader
-        className={classes.title}
-        action={
+      <Card className = {classes.card}>
+        <IconButton className = {classes.cardbutton}>
           <SimpleMenu id={props.id}/>
-        }
-        title={props.title}
-
-      >
-      
-      </CardHeader>
+        </IconButton>
       <CardMedia
+
         className={classes.media}
         image={props.image}
         title={props.title}
       />
-      
+
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
         <Icon name="Heart" size="24px" />
- 
-        </IconButton>
-        <IconButton aria-label="share">
 
         </IconButton>
+  	<Typography className= {classes.title}>
+	  {props.title}</Typography>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -105,19 +108,11 @@ export default function Content(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-         
+
           <Typography paragraph>
              <Typography dangerouslySetInnerHTML={{__html: props.summary}} />
           </Typography>
-          <Typography paragraph>
 
-          </Typography>
-          <Typography paragraph>
-
-          </Typography>
-          <Typography>
-
-          </Typography>
         </CardContent>
       </Collapse>
     </Card>
@@ -130,10 +125,18 @@ function SimpleMenu(props) {
 
 
   const handleClick = (e) => {
+
     setAnchorEl(e.currentTarget);
+
+
+  }
+  const handleOpen = (e) => {
+    console.log(props.id,'Got id ')
+ sessionStorage.setItem(props.id,'recipe_id')
 
   }
   const handleClose = () => {
+
     setAnchorEl(null);
   }
   return (
@@ -150,7 +153,9 @@ function SimpleMenu(props) {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}><RecipeModal id= {props.id}/></MenuItem>
+
         <MenuItem onClick={handleClose}><InfoModal id ={props.id}/></MenuItem>
+        <MenuItem><Link href="/recipe" onClick ={handleOpen} id={props}>view Recipe</Link></MenuItem>
         {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
       </Menu>
     </div>

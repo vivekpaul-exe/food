@@ -29,7 +29,7 @@ export default function SearchList({_id ,title , img}) {
   const handleClick=  () => {
     sessionStorage.setItem('_id', _id);
     <Link to="/recipe" push={true} _id={_id}/>
-    console.log(_id)
+    console.log(_id, "frmo list")
   }
   return (  
     <Grow in>
