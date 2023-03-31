@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from "atomize"
-import {Link} from "react-router-dom"
+
 import { alpha ,makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,14 +15,9 @@ import {
 } from "@material-ui/core"
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Searchbar from './search';
+
 import SearchModal from './searchBar';
 // import RecipeModal from '../Modal/Modal';
-import { IngredientsPage } from '../Pages/IngredientsPage';
-
-
-
-
 export default function Navbar() {
   const classes = useStyles();
   

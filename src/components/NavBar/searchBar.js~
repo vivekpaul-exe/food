@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { useSearchParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from "axios"
 import {v4 as uuidv4} from "uuid"
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchModal() {
   const classes = useStyles();
+  let [searchParams, setSearchParams] = useSearchParams();
   const [query,setQuery] = useState("");
   const [recipes,setRecipes] = useState([]);
   const [open, setOpen] = React.useState(false);
@@ -100,6 +102,8 @@ export default function SearchModal() {
 
   const OnSubmit = (e) => {
     e.preventDefault();
+   // let params = serializeFormQuery(e.target);
+    //setSearchParams(params);
     getData()
     setShow(true);
     
@@ -148,7 +152,7 @@ export default function SearchModal() {
               className={classes.margin}
               placeholder="search your intrests"
               onChange={OnChange}
-              value={query}
+              
               autoComplete="off"
 
               inputProps={{ 'aria-label': 'naked' }}

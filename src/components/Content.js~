@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigate , useParams} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -21,7 +22,8 @@ import RecipePage from "./Pages/RecipePage"
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-       fontFamily:'Signika Negative',
+    fontFamily:'Signika Negative',
+    borderRadius: 30
   },
     title:{
       fontFamily:'Signika Negative !important',
@@ -37,7 +39,9 @@ const useStyles = makeStyles((theme) => ({
     },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%', // 16:
+    margin: '1em',
+    borderRadius: 15,
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -65,9 +69,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Content(props) {
   const classes = useStyles();
+	let id = useParams();
   const [expanded, setExpanded] = React.useState(false);
-
-
+	const navigate= useNavigate();
 
 
   const handleExpandClick = () => {
@@ -121,6 +125,7 @@ export default function Content(props) {
 }
 
 function SimpleMenu(props) {
+	const id  = useParams();
   const [anchorEl , setAnchorEl] = React.useState(null);
 
 
@@ -131,9 +136,7 @@ function SimpleMenu(props) {
 
   }
   const handleOpen = (e) => {
-    console.log(props.id,'Got id ')
- sessionStorage.setItem(props.id,'recipe_id')
-
+   	navigate.to(`/recipe/${props.id}/`)
   }
   const handleClose = () => {
 
@@ -155,7 +158,7 @@ function SimpleMenu(props) {
         <MenuItem onClick={handleClose}><RecipeModal id= {props.id}/></MenuItem>
 
         <MenuItem onClick={handleClose}><InfoModal id ={props.id}/></MenuItem>
-        <MenuItem><Link href="/recipe" onClick ={handleOpen} id={props}>view Recipe</Link></MenuItem>
+        <MenuItem onClick={handleOpen}>view Recipe</MenuItem>
         {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
       </Menu>
     </div>

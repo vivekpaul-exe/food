@@ -1,27 +1,26 @@
 import React from 'react';
+import {useNavigate,createSearchParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
+// import CardHeader from '@material-ui/core/CardHeader';
 import { Icon } from "atomize";
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import Link from "@material-ui/core/Link"
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import RecipeModal from './Pages/RecipeModal';
 import {Menu  , MenuItem } from "@material-ui/core"
 import InfoModal from './Pages/infoModal';
-import RecipePage from "./Pages/RecipePage"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-       fontFamily:'Signika Negative',
+    fontFamily:'Signika Negative',
+    borderRadius: 30
   },
     title:{
       fontFamily:'Signika Negative !important',
@@ -37,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
     },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%', // 16:
+    margin: '1em',
+    borderRadius: 15,
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -65,9 +66,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Content(props) {
   const classes = useStyles();
+	
   const [expanded, setExpanded] = React.useState(false);
-
-
+	const navigate= useNavigate();
 
 
   const handleExpandClick = () => {
@@ -121,8 +122,9 @@ export default function Content(props) {
 }
 
 function SimpleMenu(props) {
+	
   const [anchorEl , setAnchorEl] = React.useState(null);
-
+  const navigate= useNavigate();
 
   const handleClick = (e) => {
 
@@ -130,11 +132,7 @@ function SimpleMenu(props) {
 
 
   }
-  const handleOpen = (e) => {
-    console.log(props.id,'Got id ')
- sessionStorage.setItem(props.id,'recipe_id')
-
-  }
+ 
   const handleClose = () => {
 
     setAnchorEl(null);
@@ -155,7 +153,7 @@ function SimpleMenu(props) {
         <MenuItem onClick={handleClose}><RecipeModal id= {props.id}/></MenuItem>
 
         <MenuItem onClick={handleClose}><InfoModal id ={props.id}/></MenuItem>
-        <MenuItem><Link href="/recipe" onClick ={handleOpen} id={props}>view Recipe</Link></MenuItem>
+        <MenuItem onClick={navigate(`/recipe/${props.id}`)}>view Recipe</MenuItem>
         {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
       </Menu>
     </div>

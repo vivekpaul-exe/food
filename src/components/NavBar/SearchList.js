@@ -25,17 +25,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchList({_id ,title , img}) {
   const classes = useStyles();
+
   const navigate = useNavigate();
-  const handleClick=  () => {
-    sessionStorage.setItem('_id', _id);
-    <Link to="/recipe" push={true} _id={_id}/>
+  const handleClick=  (_id) => {
+//	  setRecipe_id = _id
+   navigate(`/recipe/${_id}`);
+//    <Link to="/recipe" push={true} _id={_id}/>
     console.log(_id, "frmo list")
   }
   return (  
     <Grow in>
     <List className={classes.root}>
 
-      <ListItem button component={Link} href="/recipe" onClick ={handleClick} className={classes.listitem} href = "recipe" id={_id}>
+      <ListItem button component={Link}  onClick ={handleClick} className={classes.listitem}  id={_id}>
         <ListItemAvatar>
         <Avatar alt={title} src={img} />
         </ListItemAvatar>

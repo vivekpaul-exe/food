@@ -7,25 +7,28 @@ import {Container,
         Button,
         } from "@material-ui/core"
 import {recipe} from "../../demo"
+import { useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import {REACT_APP_SOME_API_KEY} from "../../index";
 import RecipeSteps from "./steps"
-export default function RecipePage(props){
+export default function RecipePage(){
     const [information , setInformation] = React.useState('');
 //    const [id , setId]= React.useState(props.id);
     const [recipe_steps , setRecipe_steps] = React.useState([]);
     const [showLoading , setShowLoading] = React.useState(true);
     const [recipe,setRecipe] = React.useState('');
+    let params = useParams();
     const StoredRecipeID = sessionStorage.getItem('recipe_id');
   useEffect(()=>{
     async function getRecipeinfo() {
-      const id = StoredRecipeID;
-	    console.log(id , "recipePage")
+      
+       console.log(params , "search Params")
       try {
-        let response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${REACT_APP_SOME_API_KEY}`)
-         let data = await response.json();
-         setInformation(data)
-
+	let res = await axios.get(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${REACT_APP_SOME_API_KEY}`)
+         	 setRecipe(res.data)
+//	let res_steps = await axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${REACT_APP_SOME_API_KEY}`)
+//	      console.log(res_steps.data)
+	     // setRecipe_steps(res_steps.data)
         setShowLoading(false);
       } catch (error) {
         console.log(error)
@@ -37,14 +40,16 @@ export default function RecipePage(props){
 
 
 
-  },[]);
+  },[])		
+
+		;
 
 
 const classes = useStyles();
     return (
         <Container maxWidth="xl">
               <p>{information}</p>
-            <Box className ={classes.rec_name}>
+	                <Box className ={classes.rec_name}>
                 {recipe.title}
                 <hr/>
                 {recipe.sourceName}
@@ -83,7 +88,7 @@ const classes = useStyles();
 
                     <Box className={classes.rsteps}>
                        Steps
-                    {/* {recipe_steps} */}
+                    {recipe_steps} 
 	    		<RecipeSteps />
                    </Box>
 

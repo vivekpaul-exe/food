@@ -73,36 +73,36 @@ export default function SingleLineGridList() {
   );
 }
 
-function ResCard({url , time , serve ,title}){
-  const classes = useStyles();
-  return (
-    <Card className={classes.Cardroot} >
-      <CardActionArea>
-        <RecipeModal>
-        <CardMedia
-          className={classes.media}
-          // image={similiarRecipes.img}
+// function ResCard({url , time , serve ,title}){
+//   const classes = useStyles();
+//   return (
+//     <Card className={classes.Cardroot} >
+//       <CardActionArea>
+//         <RecipeModal>
+//         <CardMedia
+//           className={classes.media}
+//           // image={similiarRecipes.img}
           
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-        {title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        </RecipeModal>
-      </CardActionArea>
-      <CardActions>
+//         />
+//         <CardContent>
+//           <Typography gutterBottom variant="h5" component="h2">
+//         {title}
+//           </Typography>
+//           <Typography variant="body2" color="textSecondary" component="p">
+//             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+//             across all continents except Antarctica
+//           </Typography>
+//         </CardContent>
+//         </RecipeModal>
+//       </CardActionArea>
+//       <CardActions>
         
-        <Button size="small" Linkto ={url} color="primary">
-          Learn More
-        </Button>
-        <Typography>{time}</Typography>
-        <Typography >{serve} servings</Typography>
-      </CardActions>
-    </Card>
-  )
-}
+//         <Button size="small" Linkto ={url} color="primary">
+//           Learn More
+//         </Button>
+//         <Typography>{time}</Typography>
+//         <Typography >{serve} servings</Typography>
+//       </CardActions>
+//     </Card>
+//   )
+// }
