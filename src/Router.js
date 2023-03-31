@@ -6,7 +6,7 @@ import {BrowserRouter as Router,
 import StickyFooter from "./components/Footer"
 import Navbar from "./components/NavBar/Navbar"
 import Home from "./components/Home"
-import { CuisinePage } from "./components/Pages/CuisinePage";
+import { CuisinePage } from "./components/Pages/CuisinePage"
 import { InfoPage} from "./components/Pages/InfoPage"
 import   RecipePage  from "./components/Pages/RecipePage"
 import {WinePage} from "./components/Pages/Wines"
