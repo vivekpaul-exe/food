@@ -1,6 +1,16 @@
 // This optional code is used to register a service worker.
 // register() is not called by default.
+import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute'
+import { createHandlerForURL } from 'workbox-precaching/createHandlerForURL'
+import { NavigationRoute } from 'workbox-routing/NavigationRoute'
+import { registerRoute } from 'workbox-routing/registerRoute'
 
+
+precacheAndRoute(__WB_MANIFEST)
+
+registerRoute(
+  new NavigationRoute(createHandlerForURL('/index.html'))
+)
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
 // will only see deployed updates on subsequent visits to a page, after all the
