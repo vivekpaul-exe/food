@@ -23,25 +23,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchList({_id ,title , img}) {
+export default function SearchList(props) {
   const classes = useStyles();
 
   const navigate = useNavigate();
-  const handleClick=  (_id) => {
-//	  setRecipe_id = _id
-   navigate(`/recipe/${_id}`);
+  const handleClick=  () => {
+
+  // navigate(`/recipe/${_id}`);
+	  navigate(`/recipe/${props._id}`)
 //    <Link to="/recipe" push={true} _id={_id}/>
-    console.log(_id, "frmo list")
-  }
+  console.log(props._id, "frmo list")
+	    }
   return (  
     <Grow in>
     <List className={classes.root}>
 
-      <ListItem button component={Link}  onClick ={handleClick} className={classes.listitem}  id={_id}>
+      <ListItem button component={Link}  onClick ={handleClick} className={classes.listitem}  id={props._id}>
         <ListItemAvatar>
-        <Avatar alt={title} src={img} />
+        <Avatar alt={props.title} src={props.img} />
         </ListItemAvatar>
-        <ListItemText primary={title}  />
+        <ListItemText primary={props.title}  secondary={props.id} />
       </ListItem>
     </List>
     </Grow>

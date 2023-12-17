@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from "atomize"
-import {Link} from "react-router-dom"
+
 import { alpha ,makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,18 +15,15 @@ import {
 } from "@material-ui/core"
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Searchbar from './search';
+import {useNavigate } from "react-router-dom";
+
 import SearchModal from './searchBar';
 // import RecipeModal from '../Modal/Modal';
-import { IngredientsPage } from '../Pages/IngredientsPage';
-
-
-
-
 export default function Navbar() {
   const classes = useStyles();
   
- 
+  const navigate = useNavigate();
+
   
   const [open, setOpen] = React.useState(false);
 
@@ -125,13 +122,13 @@ export default function Navbar() {
   return (
     <div className={classes.root}>
       <div className={classes.grow}>
-      <AppBar className={classes.appbar} position="static" elevation={0}>
+      <AppBar className={classes.appbar}  elevation={0}>
 
         <Toolbar className ={classes.toolbar}>
           {/* <Button edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 
           </Button> */}
-          <Typography>
+          <Typography handleClick={navigate('/')}>
             <Box href=" " className={classes.title}>
             foodster</Box>
           </Typography>
@@ -205,18 +202,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor : "whitesmoke",
   },
   appbar :{
-    backgroundColor:"white",
+    backgroundColor:"#ffffff00",
     color:"#242424",
+	  position : "absolute",
   },
   drawerPaper: {
     width: drawerWidth,
   },
   title: {
     display: 'block',
-    fontStyle:"italic",
-    flexGrow: 1,
+    fontWeight: "700", 
+       flexGrow: 1,
     color:"Black",
-    fontFamily:  'Merriweather Sans',
+    fontFamily:  'Coolvetica',
     fontSize: "2.5rem",
          "&:hover" : {
 	       color:'#FE6B8B'
@@ -286,10 +284,10 @@ const useStyles = makeStyles((theme) => ({
  },
   
   toolbutton :{
-    color: "#424242",
-    fontWeight: "500",
-    fontFamily:  'Merriweather Sans',
-    fontsize : "1.5rem",
+    color: "#0d1821",
+    fontWeight: "600",
+    fontFamily:  'Coolvetica',
+    fontsize : "20",
     textTransform: 'none'
   },
  

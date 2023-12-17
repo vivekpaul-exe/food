@@ -11,12 +11,14 @@ import { useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import {REACT_APP_SOME_API_KEY} from "../../index";
 import RecipeSteps from "./steps"
+import Content from "../Content";
 export default function RecipePage(){
     const [information , setInformation] = React.useState('');
 //    const [id , setId]= React.useState(props.id);
     const [recipe_steps , setRecipe_steps] = React.useState([]);
     const [showLoading , setShowLoading] = React.useState(true);
-    const [recipe,setRecipe] = React.useState('');
+    const [recipe ,setRecipe] = React.useState('')
+    const [recipesim,setRecipesim] = React.useState([]);
     let params = useParams();
     const StoredRecipeID = sessionStorage.getItem('recipe_id');
   useEffect(()=>{
@@ -26,9 +28,17 @@ export default function RecipePage(){
       try {
 	let res = await axios.get(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${REACT_APP_SOME_API_KEY}`)
          	 setRecipe(res.data)
-//	let res_steps = await axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${REACT_APP_SOME_API_KEY}`)
-//	      console.log(res_steps.data)
-	     // setRecipe_steps(res_steps.data)
+    let res_sim = await axios.get(`https://api.spoonacular.com/recipes/${params.id}/similar?apiKey=${REACT_APP_SOME_API_KEY}`)
+        // .then(arr => setRecipesim(arr.map(res_sim => res_sim.data)))
+        console.log( res_sim.data, recipesim)
+// //	let res_steps = await axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${REACT_APP_SOME_API_KEY}`)
+// //	      console.log(res_steps.data)
+	    
+//          res_sim.map((step)=> {
+//             return setRecipesim.concat(step)
+//          })
+        //  console.log(recipesim)
+    let recipe_steps = await axios.get(``)
         setShowLoading(false);
       } catch (error) {
         console.log(error)
@@ -51,8 +61,7 @@ const classes = useStyles();
               <p>{information}</p>
 	                <Box className ={classes.rec_name}>
                 {recipe.title}
-                <hr/>
-                {recipe.sourceName}
+               
             </Box>
             <Grid container spacing={3}>
 
@@ -93,6 +102,9 @@ const classes = useStyles();
                    </Box>
 
             </Grid>
+            <Grid>
+            {/* {recipesim.map(recipesim)} */}
+            </Grid>
         </Container>
     )
 }
@@ -120,3 +132,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 // Data
+const recipe_sim = (props) => {
+    return (
+        <Container>
+            <Typography>{props.title}</Typography>
+            <Typography>{props.id}</Typography>
+            <Typography>{props.readyinminutes}</Typography>
+            <Typography>{props.servings}</Typography>
+        </Container>
+    )
+}

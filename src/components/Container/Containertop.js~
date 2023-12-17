@@ -21,10 +21,11 @@ export default function  Containertop() {
 </svg>
 
     </Box> */}
-      <Grid container spacing ={2}>
+      <Grid container >
         <Grid className={classes.griditem} wrap="nowrap" item xs={12} sm={6}>
-       
-          <Container>
+       <img  className = {classes.img} src={image}/>
+          <Container  className = {classes.text} src={image}>
+	  
                <Box className={classes.boxitem}>
           <Typography className={classes.text}  >
             <Box  className={classes.boxfont}>One should
@@ -60,15 +61,13 @@ export default function  Containertop() {
           
           
           </Container>
-            
-           
+                     
             
          
         </Grid>
         <Grid className={classes.griditem} item xs={12} sm={6}>
-          <Box className={classes.boxitem1}>
-          <img className = {classes.img} src={image} alt ="food "/>
-          </Box>
+         <Box className={classes.boxitem1}>
+       </Box>
         </Grid>
       </Grid>
     </Box>
@@ -79,14 +78,15 @@ export default function  Containertop() {
 const useStyles = makeStyles((theme) => ({
   box1:{
     marginTop:"1vh",
+    background :"#ffffff",
   },
   text :{
     fontSize:"3.75rem",
     lineHeight: "1.2",
     color: "#242424",
     marginLeft :10,
-    marginRight: 10,
-    fontFamily : 'Merriweather Sans',
+	    marginRight: 10,
+    fontFamily : 'Coolvetiva',
     display: "inline-flex",
   },
   boxfont :{
@@ -116,11 +116,11 @@ const useStyles = makeStyles((theme) => ({
     float: "right",
   },
   griditem:{
-
+	  maxHeight: "-webkit-fill-available",
   },
   boxitem :{
-    height :"min-content",
-   
+       position:"absolute",
+
     marginTop: "5vh",
   },
   boxitem1 :{
@@ -129,13 +129,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 800,
   },
   img: {
-    width:662,
-    border: "solid 1px",
-    borderColor: "Black",
+    width:700,
     borderRadius : 25,
-    '&:hover': {
-      elevation :5,
-   },
-    
+   objectFit: "cover",
+   position:"absolute",
+   backdropFilter :"blur(2px)",
+   height:"100vh",
+       
   },
 }));

@@ -2,6 +2,7 @@
 
 import React , {useState  , useEffect} from "react";
 import Content from "./Content"
+import Contentex from "./Contentex"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { Row, Col, Div } from "atomize";
 import {REACT_APP_SOME_API_KEY} from "../index"
@@ -14,7 +15,12 @@ import ContainerS from "./Container/ContainerS"
 const useStyles = makeStyles((theme) => ({
   containerBox   :{
     // flexDirection:"row",
+	 position: "absolute",
   },
+	mainCon:{
+		position:"absolute",
+		padding:0,
+	}
 }));
 export default function Home() {
   const classes =  useStyles();
@@ -58,11 +64,39 @@ export default function Home() {
   return (
 
     <div className ={classes.containerBox}>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" className ={classes.mainCon}>
         <Containertop />
         <ContainerR />
         <ContainerS />
+      <Row>
 
+      <Col size={{ xs: 12, lg: 3 }}>
+            <Div p="4px" >
+            {showLoading ? <CircularProgress color="primary" /> :
+            <Contentex /> }
+           </Div>
+          </Col>
+          <Col  size={{ xs: 12, lg: 3 }}>
+            <Div p="4px" >
+            {showLoading ? <CircularProgress color="primary" /> :
+           <Contentex /> }
+           </Div>
+          </Col>
+          <Col size={{ xs: 12, lg: 3 }}>
+            <Div p="4px" >
+            {showLoading ? <CircularProgress color="primary" /> :
+              <Contentex /> }
+              </Div>
+          </Col>
+          <Col size={{ xs: 12, lg: 3 }}>
+            <Div p="4px">
+
+            {showLoading ? <CircularProgress color="primary" /> :
+           <Contentex /> }
+           </Div>
+          </Col>
+
+        </Row>
       <Row>
 
       <Col size={{ xs: 12, lg: 3 }}>
@@ -90,9 +124,8 @@ export default function Home() {
             <Content id ={id} image={image}  title= {title} summary ={summary} vegeterian ={vegeterian} Healthy={veryHealthy}/> }
             </Div>
           </Col>
+  
         </Row>
-
-
         </Container>
     </div>
 

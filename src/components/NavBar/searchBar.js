@@ -32,9 +32,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
 	  color:"#424242",
     padding:12,
-    background: "#8080801f",
-    borderRadius: 11,
-    width:"10vw"
+    background: "#fff",
+    borderRadius: 40,
+    width:"46vw",
+    marginLeft:"33vw",
+    maxWidth:"48vw",
+    border:"2px solid #424242",
 
   //    [theme.breakpoints.down("sm")]: {
   //      minWidth: 32,
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchModal() {
+export default function SearchModal(props) {
   const classes = useStyles();
   // let [searchParams, setSearchParams] = useSearchParams();
   const [query,setQuery] = useState("");
@@ -152,7 +155,7 @@ export default function SearchModal() {
               className={classes.margin}
               placeholder="search your intrests"
               onChange={OnChange}
-              
+             
               autoComplete="off"
 
               inputProps={{ 'aria-label': 'naked' }}
@@ -167,10 +170,8 @@ export default function SearchModal() {
                         {recipes?.map(recipe => 
                         <Grow in>
                         <SearchList 
-                          _id = {recipe.id}
-                          key={uuidv4()} 
-                          title={recipe.title}  
-                          img={recipe.image} 
+				props={props}
+                          
                           /></Grow>)}
                           
                           </Box>

@@ -15,13 +15,15 @@ import {
 } from "@material-ui/core"
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import {useNavigate } from "react-router-dom";
 
 import SearchModal from './searchBar';
 // import RecipeModal from '../Modal/Modal';
 export default function Navbar() {
   const classes = useStyles();
   
- 
+  const navigate = useNavigate();
+
   
   const [open, setOpen] = React.useState(false);
 
@@ -120,22 +122,22 @@ export default function Navbar() {
   return (
     <div className={classes.root}>
       <div className={classes.grow}>
-      <AppBar className={classes.appbar} position="static" elevation={0}>
+      <AppBar className={classes.appbar}  elevation={0}>
 
         <Toolbar className ={classes.toolbar}>
           {/* <Button edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 
           </Button> */}
-          <Typography>
+          <Typography handleClick={navigate('/')}>
             <Box href=" " className={classes.title}>
             foodster</Box>
           </Typography>
          {/* <Searchbar/> */}
-         <SearchModal/>
+         <SearchModal className={classes.searchSearch}/>
           <div className = {classes.grow} />
           <div className = {classes.sectionDesktop}>
 
-          <Button  href="recipe"  className ={classes.toolbutton} color="inherit">
+          {/* <Button  href="recipe"  className ={classes.toolbutton} color="inherit">
             <Box>
               Recipes
               </Box>
@@ -160,7 +162,7 @@ export default function Navbar() {
               Item List
               </Box>
             </Button>
-           
+            */}
 
          
           </div>
@@ -200,19 +202,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor : "whitesmoke",
   },
   appbar :{
-    backgroundColor:"white",
-    color:"#242424",
+    backgroundColor:"#ffffff00",
+    color:"#fff",
+	  position : "absolute",
   },
   drawerPaper: {
     width: drawerWidth,
   },
   title: {
     display: 'block',
-    fontStyle:"italic",
-    flexGrow: 1,
-    color:"Black",
-    fontFamily:  'Merriweather Sans',
-    fontSize: "2.5rem",
+    fontWeight: "500", 
+       flexGrow: 1,
+    color:"#f5f5f5",
+    fontFamily:  'Coolvetica',
+    fontSize: "3.5rem",
          "&:hover" : {
 	       color:'#FE6B8B'
        }
@@ -223,6 +226,8 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   search: {
+    flexGrow: 1,
+    alignSelf:"flex-end",
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -236,6 +241,11 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
+  },
+  searchSearch:{
+    marginLeft: "33vw",
+    width: "46vw",
+    maxWidth:"48vw",
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -281,10 +291,10 @@ const useStyles = makeStyles((theme) => ({
  },
   
   toolbutton :{
-    color: "#424242",
-    fontWeight: "500",
-    fontFamily:  'Merriweather Sans',
-    fontsize : "1.5rem",
+    color: "#0d1821",
+    fontWeight: "600",
+    fontFamily:  'Coolvetica',
+    fontsize : "20",
     textTransform: 'none'
   },
  

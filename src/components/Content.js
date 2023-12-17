@@ -2,14 +2,19 @@ import React from 'react';
 import {useNavigate,createSearchParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
+
+
 import { Icon } from "atomize";
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
+import { CardHeader,
+          Card , 
+          CardContent,
+          CardActions,
+          CardMedia,
+          Collapse ,
+          IconButton,
+          ButtonBase} from "@material-ui/core"
+
+
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import RecipeModal from './Pages/RecipeModal';
@@ -34,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     cardbutton:{
       position :"absolute",
     },
+    buttonmedia:{
+      display :'contents',
+    },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:
@@ -56,20 +64,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-/*
-    async REcipe function
-      DATA POINT
-  */
-
-//  var recipe = getRecipe().then((recipe) => console.log(recipe));
-
-
 export default function Content(props) {
   const classes = useStyles();
 	
   const [expanded, setExpanded] = React.useState(false);
 	const navigate= useNavigate();
-
+  const handleOpen =() => {
+    navigate(`/recipe/${props.id}`)
+  }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -82,13 +84,15 @@ export default function Content(props) {
         <IconButton className = {classes.cardbutton}>
           <SimpleMenu id={props.id}/>
         </IconButton>
-      <CardMedia
-
-        className={classes.media}
-        image={props.image}
-        title={props.title}
-      />
-
+        <ButtonBase
+          className={classes.buttonmedia}
+          onClick={handleOpen}>
+            <CardMedia
+              className={classes.media}
+              image={props.image}
+              title={props.title}
+            />
+      </ButtonBase>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
         <Icon name="Heart" size="24px" />
@@ -96,7 +100,7 @@ export default function Content(props) {
         </IconButton>
   	<Typography className= {classes.title}>
 	  {props.title}</Typography>
-        <IconButton
+        {/* <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
@@ -105,7 +109,7 @@ export default function Content(props) {
           aria-label="show more"
         >
         <Icon name="DownArrowCircle" size="24px" />
-        </IconButton>
+        </IconButton> */}
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
@@ -153,9 +157,11 @@ function SimpleMenu(props) {
         <MenuItem onClick={handleClose}><RecipeModal id= {props.id}/></MenuItem>
 
         <MenuItem onClick={handleClose}><InfoModal id ={props.id}/></MenuItem>
-        <MenuItem onClick={navigate(`/recipe/${props.id}`)}>view Recipe</MenuItem>
+        {/* <MenuItem onClick={navigate(`/recipe/${props.id}`)}>view Recipe</MenuItem> */}
         {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
       </Menu>
     </div>
   )
 }
+
+

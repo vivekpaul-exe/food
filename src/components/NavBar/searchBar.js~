@@ -67,9 +67,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchModal() {
+export default function SearchModal(props) {
   const classes = useStyles();
-  let [searchParams, setSearchParams] = useSearchParams();
+  // let [searchParams, setSearchParams] = useSearchParams();
   const [query,setQuery] = useState("");
   const [recipes,setRecipes] = useState([]);
   const [open, setOpen] = React.useState(false);
@@ -167,6 +167,7 @@ export default function SearchModal() {
                         {recipes?.map(recipe => 
                         <Grow in>
                         <SearchList 
+				props={props}
                           _id = {recipe.id}
                           key={uuidv4()} 
                           title={recipe.title}  

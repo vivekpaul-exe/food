@@ -10,7 +10,7 @@ const API = axios.create({
 // Recipe links 
 export const fetchRecipe  = (id ,key) => API.get(`/recipes/${id}/information?apiKey=${key}`)
 //  https://api.spoonacular.com/recipes/{id}/information
-export const searchRecipes = (id, key) => API.get(`/recipes/complexSearch?query=${query}?apiKey=${key}`)
+export const searchRecipes = (query, key) => API.get(`/recipes/complexSearch?query=${query}?apiKey=${key}`)
 //  https://api.spoonacular.com/recipes/complexSearch
 
 export const fetchByIngredients = (query, key) => API.get(`/recipes/findByIngredients?query=${query}?apiKey=${key}`)

@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import {REACT_APP_SOME_API_KEY} from "../index"
 import {useNavigate,createSearchParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -64,13 +65,46 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Content(props) {
+export default function Contentex() {
   const classes = useStyles();
-	
+//   Setting the fetch params here instead of the home 
+const [title ,setTitle] = useState('A Title');
+  const [summary ,setSummary] =  useState('A summary');
+  const [image , setImage] = useState('https://www.qsrmagazine.com/sites/default/files/styles/slideshow_image/public/slideshow-images/slides/mcdonaldsglobal.jpg?itok=X8uup3iY')
+  const [vegeterian , setVegeterian] = useState('false');
+  const [veryHealthy , setVeryHealthy] = useState('false')
+  const [showLoading , setShowLoading] = useState(true);
+  const [id , setId] = useState('');
+// end of the added code 
   const [expanded, setExpanded] = React.useState(false);
 	const navigate= useNavigate();
+    useEffect(()=>{
+        async function getRecipe() {
+    
+          try {
+            let response = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${REACT_APP_SOME_API_KEY}`)
+             let data = await response.json();
+    
+            setTitle(data.recipes[0].title);
+            setImage(data.recipes[0].image)
+            setVegeterian(data.recipes[0].vegeterian)
+            setVeryHealthy(data.recipes[0].veryHealthy)
+            setSummary(data.recipes[0].summary)
+            setId(data.recipes[0].id)
+            setShowLoading(false);
+          } catch (error) {
+            console.log(error)
+    
+          }
+    
+        }
+        getRecipe()
+    
+    
+    
+      },[]);
   const handleOpen =() => {
-    navigate(`/recipe/${props.id}`)
+    navigate(`/recipe/${id}`)
   }
 
   const handleExpandClick = () => {
@@ -82,15 +116,15 @@ export default function Content(props) {
 
       <Card className = {classes.card}>
         <IconButton className = {classes.cardbutton}>
-          <SimpleMenu id={props.id}/>
+          <SimpleMenu id={id}/>
         </IconButton>
         <ButtonBase
           className={classes.buttonmedia}
           onClick={handleOpen}>
             <CardMedia
               className={classes.media}
-              image={props.image}
-              title={props.title}
+              image={image}
+              title={title}
             />
       </ButtonBase>
       <CardActions disableSpacing>
@@ -99,7 +133,7 @@ export default function Content(props) {
 
         </IconButton>
   	<Typography className= {classes.title}>
-	  {props.title}</Typography>
+	  {title}</Typography>
         {/* <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -115,7 +149,7 @@ export default function Content(props) {
         <CardContent>
 
           <Typography paragraph>
-             <Typography dangerouslySetInnerHTML={{__html: props.summary}} />
+             <Typography dangerouslySetInnerHTML={{__html: summary}} />
           </Typography>
 
         </CardContent>
