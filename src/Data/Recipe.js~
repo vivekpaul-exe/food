@@ -5,14 +5,14 @@ import {useNavigate,createSearchParams } from "react-router-dom";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {REACT_APP_SOME_API_KEY} from "../index"
 import Card from '@material-ui/core/Card';
-import {ButtonBase, CircularProgress} from "@material-ui/core"
+import {ButtonBase} from "@material-ui/core"
 import { Icon } from "atomize";
 
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-// import { CircularProgress } from '@material-ui/core';
+
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
@@ -25,16 +25,10 @@ const useStyles = makeStyles((theme: Theme) =>
       elevation: 0,
       backgroundColor:'#ffccbc',
       maxWidth: 312,
-      height:350,
+      
       borderRadius : 16,
       boxShadow: '0px 0px 0px 0px',
-    
-    },   
-    progresser:{
-      marginTop:'30%',
-      marginLeft:'30%',
-      color:'#fff',
-    } ,
+    },    
     rec_head:{
         fontSize:'1rem !important',
         fontFamily:'Coolvetica',
@@ -44,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
         margin:0,
     },
     rec_type:{
-      lineHeight:'1',
+      
     },
     recipe_actions:{
       padding: '8px 16px 0px 16px'
@@ -58,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     box_des:{
         display:'flex',
-        marginTop: 8,
+        marginTop: 16,
         marginLeft:16,
         marginRight:16,
         fontFamily:'Noto Sans Semibold',
@@ -107,10 +101,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 export default function Content() {
   const classes = useStyles();
-  // const [loading,setLoading] = React.useState(True);
+  
   const [title ,setTitle] = useState('A Title');
   const [summary ,setSummary] =  useState('A summary');
   const [image , setImage] = useState('https://www.qsrmagazine.com/sites/default/files/styles/slideshow_image/public/slideshow-images/slides/mcdonaldsglobal.jpg?itok=X8uup3iY')
@@ -136,7 +129,6 @@ export default function Content() {
             setSummary(data.recipes[0].summary)
             setId(data.recipes[0].id)
             setShowLoading(false);
-		console.log(data);
           } catch (error) {
             console.log(error)
     
@@ -154,12 +146,11 @@ export default function Content() {
       }
   return (
     <Card className={classes.root}>
-      {showLoading ? <div className={classes.progresser}><CircularProgress size={100} thickness={2} color='#fff'  /></div> : <>
       <CardHeader
         className={classes.rec_head}
         action={
           <IconButton aria-label="Add to favourites" onClick={() => setFav((fav) => !fav)}>
-            {fav ?  <Icon name="HeartSolid" color="#bd0e14" size="24px"/> :<Icon name="Heart" color="#202020" size="24px" />  }
+             {fav ? <Icon name="Heart" color="202020" size="24px" /> : <Icon name="HeartSolid" color="#bd0e14" size="24px"/> }
           </IconButton>
         }
          title={
@@ -198,10 +189,8 @@ export default function Content() {
         
         
       </CardContent>
-     </> 
-    }
+      
+      
     </Card>
   );
 }
-
-

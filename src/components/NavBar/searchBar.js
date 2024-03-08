@@ -32,12 +32,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
 	  color:"#424242",
     padding:12,
-    background: "#fff",
-    borderRadius: 40,
-    width:"46vw",
-    marginLeft:"33vw",
-    maxWidth:"48vw",
-    border:"2px solid #424242",
+    background: "#8080801f",
+    borderRadius: 11,
+    width:"10vw"
 
   //    [theme.breakpoints.down("sm")]: {
   //      minWidth: 32,
@@ -65,12 +62,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     border: '1px solid #fff',
     borderRadius: 15,
-    boxShadow: theme.shadows[5],
+    // boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
 
-export default function SearchModal(props) {
+export default function SearchModal() {
   const classes = useStyles();
   // let [searchParams, setSearchParams] = useSearchParams();
   const [query,setQuery] = useState("");
@@ -147,7 +144,7 @@ export default function SearchModal(props) {
         }}
       >
         <Fade in={open}>
-          <Paper className = {classes.con_paper}>
+          <Paper elevation={0} className = {classes.con_paper}>
           <form onSubmit={OnSubmit} className = {classes.searchForm}>
           <div className={classes.paper}>
             
@@ -155,14 +152,15 @@ export default function SearchModal(props) {
               className={classes.margin}
               placeholder="search your intrests"
               onChange={OnChange}
-             
+              
               autoComplete="off"
 
               inputProps={{ 'aria-label': 'naked' }}
             />
           </div>
           </form>
-            <Typography>{results_no} recipes found!</Typography>
+          {{results_no} > 0 ?  <Typography>{results_no} recipes found!</Typography> : '' } 
+            
              {/* CArd Comtainer will be shifted to sparate field after the 
              sucessfull ui implement */} <Grow in>
                       <Box  className={classes.reslist}>
@@ -170,8 +168,10 @@ export default function SearchModal(props) {
                         {recipes?.map(recipe => 
                         <Grow in>
                         <SearchList 
-				props={props}
-                          
+                          _id = {recipe.id}
+                          key={uuidv4()} 
+                          title={recipe.title}  
+                          img={recipe.image} 
                           /></Grow>)}
                           
                           </Box>
@@ -183,5 +183,4 @@ export default function SearchModal(props) {
     </div>
   );
 }
-
 

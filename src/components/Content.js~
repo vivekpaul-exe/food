@@ -66,8 +66,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Content(props) {
   const classes = useStyles();
+  const [expanded,setExpanded] = React.useState(false)
+  const [fav,setFav] = React.useState(false)
 	
-  const [expanded, setExpanded] = React.useState(false);
 	const navigate= useNavigate();
   const handleOpen =() => {
     navigate(`/recipe/${props.id}`)
@@ -94,8 +95,8 @@ export default function Content(props) {
             />
       </ButtonBase>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-        <Icon name="Heart" size="24px" />
+        <IconButton aria-label="add to favorites" onClick={() => setFav((fav) => !fav)}>
+        {/* {fav ? <Icon name="Heart" color="202020" size="24px" /> : <Icon name="Heart" color="#bd0e14" size="24px"/>  } */}
 
         </IconButton>
   	<Typography className= {classes.title}>
