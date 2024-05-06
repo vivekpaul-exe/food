@@ -8,7 +8,7 @@ import "dotenv/config"
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 export const REACT_APP_SOME_API_KEY = process.env.REACT_APP_SOME_API_KEY ;
-
+console.log(REACT_APP_SOME_API_KEY)
 
 const engine = new Styletron({
       hydrate: document.getElementsByClassName("_styletron_hydrate_")
