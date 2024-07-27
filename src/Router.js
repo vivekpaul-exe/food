@@ -22,7 +22,7 @@ export default function RouteConfig(){
              <Routes>
                 <Route path="/" element={<Develop />} />
                 
-        //        <Route path="/info" element={<InfoPage />} />
+{/*      <Route path="/info" element={<InfoPage />} />. */} 
                 <Route path="/ingredients" element={<IngredientsPage />} />
                 <Route path="/recipe/:id" element={<RecipePage />} />
                 <Route path="/Cuisines/:type" element={<CuisinePage />} />
