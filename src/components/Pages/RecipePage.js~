@@ -1,96 +1,214 @@
 import React , {useEffect} from "react"
+
+import Vibrant from "node-vibrant"
 import axios from "axios";
 import {Container,
         Box,
         Typography,
     Grid,
         Button,
+        Paper,
         } from "@material-ui/core"
 import {recipe} from "../../demo"
+import { useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import {REACT_APP_SOME_API_KEY} from "../../index";
-import RecipeSteps from "./steps"
+
+import  { recipeDATA } from "./recipeDATA"
+import   ImageWithPalette  from "../GetColor"
+// import  "../../stepsr.json"
+// Emeber to add the recipe id to the recipe to connect the navbar to the recipe page 
+
 export default function RecipePage(props){
-    const [information , setInformation] = React.useState('');
-//    const [id , setId]= React.useState(props.id);
-    const [recipe_steps , setRecipe_steps] = React.useState([]);
+    const [imgUrl , setImgUrl] = React.useState("")
+    const [palette,setPalette] = React.useState({})
+    const [ingredient , setIngredient] = React.useState([]);
+    const [error,setError] = React.useState()
+    const [loading,setLoading] = React.useState(true)
+  
+   const [id , setId]= React.useState(props.id);
+    const [steps , setSteps] = React.useState([]);
     const [showLoading , setShowLoading] = React.useState(true);
-    const [recipe,setRecipe] = React.useState('');
+    const [data ,setData] = React.useState([])
+    const [unit,setUnit] = React.useState(false)
+    const [recipesim,setRecipesim] = React.useState([]);
+    // const imglink = 'https://img.freepik.com/premium-photo/colorful-fabric-material-wallpaper-mixed-color-background_234209-504.jpg'
+    let params = useParams();
+    // const data= {}
     const StoredRecipeID = sessionStorage.getItem('recipe_id');
-  useEffect(()=>{
-    async function getRecipeinfo() {
-      const id = "716429" // StoredRecipeID ;
-       console.log(id , "recipePage")
-      try {
-	let res = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${REACT_APP_SOME_API_KEY}`)
-         	 setRecipe(res.data)
-//	let res_steps = await axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${REACT_APP_SOME_API_KEY}`)
-//	      console.log(res_steps.data)
-	     // setRecipe_steps(res_steps.data)
-        setShowLoading(false);
-      } catch (error) {
-        console.log(error)
+    
+  useEffect(()=>{                                                 
+    const fetchData = async () => {
+        try {
+          const response = await fetch(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${REACT_APP_SOME_API_KEY}`);
 
-      }
-
-    }
-    getRecipeinfo()
-
-
-
-  },[])		
-
-		;
-
-
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          setData(data);
+          
+          // setData(recipeDATA)
+          setIngredient(data.extendedIngredients)
+          const image = new Image();
+          image.src = data.image
+          image.crossOrigin = "anonymous"
+                  Vibrant.from(image).getPalette().then((palette)=>console.log(palette))
+          let stepsrec = data.analyzedInstructions[0].steps
+          setSteps(stepsrec) // Update state with fetched data
+          setLoading(false); // Set loading to false
+        } catch (error) {
+          setError(error); // Update state with the error
+          setLoading(false); // Set loading to false
+        }
+      };
+fetchData() 
+},[])
 const classes = useStyles();
     return (
         <Container maxWidth="xl">
-              <p>{information}</p>
+           
 	                <Box className ={classes.rec_name}>
-                {recipe.title}
-                <hr/>
-                {recipe.sourceName}
+                {data.title}
+               
             </Box>
             <Grid container spacing={3}>
+             <Grid item xs={12} sm={6} >
 
-
-            <Grid item xs={12} sm={6}>
-                            <img className={classes.recimg} src={recipe.image} />
-                </Grid>
-
-                    <Grid item xs={12} sm={6}>
-
-                    <Typography className ={classes.rec_info}>
-                        {recipe.glutenFree}
-                        {recipe.dairyFree}
-                        {recipe.cheap}
-                        {recipe.veryPopular}
-                        {recipe.pricePerServing}
+                    <Typography className={classes.rec_info} >
+                        {data.glutenFree}
+                        {data.dairyFree}
+                        {data.cheap}
+                        {data.veryPopular}
+                        {data.pricePerServing}
                     </Typography>
                     <Typography>
-                        best for :  {recipe.dishTypes}
+                        best for :  {data.dishTypes}
                     </Typography>
                     <Typography>
                         {/* {recipe.winePairing.pairingText} */}
                     </Typography>
                     <hr />
-
-                    <Typography>
-                        Summary
-                        <Typography dangerouslySetInnerHTML={{__html: recipe.summary}} />
+             
+                    <Typography className={classes.rec_info}>
+                        Summary{data.servings}
+                        <Typography className={classes.rec_info} dangerouslySetInnerHTML={{__html: data.summary}} />
+{data.spoonacularScore}
 
                     </Typography>
 
+                 </Grid>
+
+            <Grid item xs={12} sm={6}>
+                            <img className={classes.recimg} src={data.image} />
                 </Grid>
+
+                <Container maxWidth="xl">
+                  <Paper elevation={0}>
+                    <>
+                    <Box className={classes.boxinfo}>
+                      <Typography>Cooking Time </Typography>
+                      <Typography>{data.cookingMinutes} </Typography>
+                    </Box>
+                    <Box className={classes.boxinfo}><Typography>Preparation time </Typography><Typography>{data.preparationMinutes}</Typography></Box>
+                    <Box className={classes.boxinfo}><Typography> Total time </Typography><Typography> {data.readyinminutes}</Typography></Box>
+                    
+                    </>
+                    <>
+                    <Box className={classes.boxinfo}>
+                      <Typography>Cuisine </Typography>
+                      <Typography>{data.cuisines} </Typography>
+                    </Box>
+                    <Box className={classes.boxinfo}><Typography>Course </Typography><Typography>{data.dishTypes}</Typography></Box>
+                    <Box className={classes.boxinfo}><Typography> Diet </Typography><Typography> {data.diets}</Typography></Box>
+                    
+                    <Box className={classes.boxinfo}><Typography>Difficulty Level</Typography><Typography>{data.di}</Typography></Box>
+                    </>
+                  </Paper>
+                </Container>
 
                     <Box className={classes.rsteps}>
                        Steps
-                    {recipe_steps} 
-	    		<RecipeSteps />
+                    {/* {recipe_steps}  */}
+                    {/* <ul>
+                      {step.equipment.map((equipment, index) => (
+                        <li key={index}>
+                          <img src={equipment.image} alt={equipment.name} width="50" height="50" />
+                          {equipment.name}
+                        </li>
+                      ))}
+                    </ul> */}
                    </Box>
 
             </Grid>
+            <Grid>
+            {/* {recipesim.map(recipesim)} */}
+            </Grid>
+            <Container>
+              
+                    <Grid item >
+                        <Paper>
+                            <Typography className={classes.Sec_heading}>Ingredients</Typography>
+                            
+                                <Button onClick={(unit) => (!unit)}> {unit==false ? "us" : "metric"}</Button>
+                                {steps.map((step) => (
+                                  <Grid container spacing={3}>
+                                      <Grid item xs={4}>
+                                        <Paper>
+                                          <div key={step.number}>
+                                              <h3>Step {step.number}</h3>
+                                              <Typography className={classes.rec_info}>{step.step}</Typography>
+                                              <Typography h4 className={classes.rec_info}>Ingredients:</Typography>
+                                              <ul>
+                                              {step.equipment.map((equipment, index) => (
+                                                <li key={index}>
+                                                  <img src={equipment.image} alt={equipment.name} width="50" height="50" />
+                                                  {equipment.name}
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        </Paper>
+                                      </Grid>
+                                    <Grid item xs={4}>
+                                      <Typography className={classes.Sec_heading}>Equipment</Typography>
+                                    
+                                    <ul>
+                                                {step.ingredients.map((ingredient, index) => (
+                                                  <Paper key={index} className={classes.ingredient_list}>
+                                                    <img src={ingredient.image} alt={ingredient.name} width="50" height="50" />
+                                                    {ingredient.name}
+                                                  </Paper>
+                                                ))}
+                                              </ul>
+                                    {step.length && (
+                                      <p>
+                                        Time required: {step.length.number} {step.length.unit}
+                                      </p>
+                                    )}
+                                    </Grid>
+                                    
+                                  </Grid>
+                                ))}
+                                {/* <ul>
+                                  {step.ingredients.map((ingredient, index) => (
+                                    <li key={index}>
+                                      <img src={ingredient.image} alt={ingredient.name} width="50" height="50" />
+                                      {ingredient.name}
+                                    </li>
+                                  ))}
+                                </ul> */}
+                              
+                            
+                        </Paper>
+                    
+                  </Grid> 
+               
+            </Container>
+            <Container>
+           
+            </Container>
+            
         </Container>
     )
 }
@@ -101,10 +219,10 @@ const useStyles = makeStyles((theme) => ({
         borderRadius : 13,
     },
     rec_name :{
-        fontWeight: "600",
-        fontFamily: "signika Negative",
-        fontSize: "1.5em",
-        paddingBottom: "2vh",
+        fontWeight: "500",
+        fontFamily: "Coolvetica",
+        fontSize: "3.5em",
+        paddingBottom: "8vh",
         paddingTop: "2vh",
 
     },
@@ -112,7 +230,16 @@ const useStyles = makeStyles((theme) => ({
       width: "50%",
     },
     rec_info : {
+        fontFamily:"Coolvetica !important",
+    },
+    rec_info_instructions:{
+        fontFamily:"Noto Sans Medium",
+        fontSize:"1em",
 
+    },
+    boxinfo:{
+      fontFamily:"Coolvetica",
+      fontSize:16
     },
 
 }))

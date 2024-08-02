@@ -1,16 +1,17 @@
 import React from 'react';
-import { Icon } from "atomize"
-
+import { Icon,  } from "atomize"
+import  FavDrawer  from "../../components/FavDrawer"
 import { alpha ,makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import {
         Box,
-       
+  Grid,
         Drawer,
         IconButton,
         List , 
         ListItem,
+        SwipeableDrawer,
 
 } from "@material-ui/core"
 import Typography from '@material-ui/core/Typography';
@@ -26,7 +27,7 @@ export default function Navbar() {
 
   
   const [open, setOpen] = React.useState(false);
-
+  const [view,setView] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -34,7 +35,14 @@ export default function Navbar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  
+  const handlefavDrawerOpen = () => {
+    setOpen(false)
+    setView(true)
+  }
+  const handlefavDrawerClose = () => {
+    setOpen(false)
+    setView(false)
+  }
   // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   
@@ -70,6 +78,7 @@ export default function Navbar() {
       <ListItem button  href="Cuisines" className={classes.listitem} onClick={handleDrawerClose}>Cuisines</ListItem>
       <ListItem button  href="wines" className={classes.listitem} onClick={handleDrawerClose}>Wines</ListItem>
       <ListItem button  href="itemspage" className={classes.listitem} onClick={handleDrawerClose}>Item List</ListItem>
+      <ListItem button   className={classes.listitem} onClick={handlefavDrawerOpen}>Favorites</ListItem>
     </List>
   );
 
@@ -133,37 +142,49 @@ export default function Navbar() {
             foodster</Box>
           </Typography>
          {/* <Searchbar/> */}
-         <SearchModal className={classes.searchSearch}/>
+         
           <div className = {classes.grow} />
           <div className = {classes.sectionDesktop}>
-
-          {/* <Button  href="recipe"  className ={classes.toolbutton} color="inherit">
-            <Box>
+          <SwipeableDrawer
+            className={classes.DrawerFav}
+            anchor="right"
+            >
+              <Typography>Herer I am!!!</Typography>
+            </SwipeableDrawer>
+          <SearchModal className={classes.searchSearch}/>
+            <Button  href="recipe"  className ={classes.toolbutton} color="inherit">
+            <Box className={classes.linkbutton}>
               Recipes
               </Box>
             </Button>
             <Button  href="ingredients" className ={classes.toolbutton} color="inherit">
-            <Box>
+            <Box className={classes.linkbutton}>
               Ingredients 
               </Box>
             </Button>
             <Button href="Cuisines" className ={classes.toolbutton} color="inherit">
-            <Box>
+            <Box className={classes.linkbutton}>
               Cuisines
               </Box>
             </Button>
             <Button href="wines" className ={classes.toolbutton} color="inherit">
-            <Box>
+            <Box className={classes.linkbutton}>
               Wines
               </Box>
             </Button>
             <Button href="itemspage" className ={classes.toolbutton} color="inherit">
-            <Box>
+            <Box className={classes.linkbutton}>
               Item List
               </Box>
             </Button>
-            */}
-
+            <FavDrawer className ={classes.linkbutton}/>
+          
+          
+            {/* <SearchModal className={classes.searchSearch}/> */}
+         
+          
+           
+           
          
           </div>
           <div className={classes.sectionMobile}>
@@ -292,10 +313,18 @@ const useStyles = makeStyles((theme) => ({
   
   toolbutton :{
     color: "#0d1821",
-    fontWeight: "600",
+    fontWeight: "500",
     fontFamily:  'Coolvetica',
-    fontsize : "20",
+    fontsize : "1.15em",
+    margin:"auto",
+    padding:0,
+    borderRadius:50,
+    width:"max-content",
+    height:"-webkit-fill-available",
     textTransform: 'none'
   },
+  linkbutton:{
+    padding:12,
+  }
  
 }));

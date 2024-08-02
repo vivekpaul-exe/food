@@ -7,6 +7,7 @@ import {   Paper ,Container, Box,ButtonBase,CircularProgress,InputBase } from '@
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { Icon } from "atomize";
 import SearchIcon  from "@material-ui/icons/Search"
 import Grow from '@material-ui/core/Grow';
 import {Card , Button , Typography, CardActionArea,CardActions,CardContent,CardMedia} from "@material-ui/core"
@@ -26,15 +27,18 @@ const useStyles = makeStyles((theme) => ({
   },
   Search:{
     marginLeft:15,
-    
+    borderRadius:16,
+    border:'0px solid #424242',
   },
   searchbutton: {
     margin: theme.spacing(1),
 	  color:"#424242",
     padding:12,
+    margin: 0,
+
     background: "#8080801f",
-    borderRadius: 11,
-    width:"10vw"
+    borderRadius: 16,
+    width:"4vw"
 
   //    [theme.breakpoints.down("sm")]: {
   //      minWidth: 32,
@@ -46,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
   //    }
   },
   searchTag: {
-	  color:"#424224",
+	  color:"#000",
     paddingLeft: 4,
-
+    fontFamily:"Noto Sans",
     [theme.breakpoints.down("sm")]: {
       display: "none"
     }
@@ -123,13 +127,13 @@ export default function SearchModal() {
   };
 
   return (
-    <div className ={classes.Search}>
+    <Paper elevation={0} className ={classes.Search}>
       <ButtonBase className = {classes.searchbutton} type="button" onClick={handleOpen}>
-        <SearchIcon />
-        <span className={classes.searchTag}>
+     
+        {/* <span className={classes.searchTag}>
           Search 
-        </span>
-
+        </span> */}
+          <Icon name="Search" size="25px" />
       </ButtonBase>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -163,6 +167,8 @@ export default function SearchModal() {
             
              {/* CArd Comtainer will be shifted to sparate field after the 
              sucessfull ui implement */} <Grow in>
+
+            
                       <Box  className={classes.reslist}>
                        
                         {recipes?.map(recipe => 
@@ -180,7 +186,7 @@ export default function SearchModal() {
         </Fade> 
 
       </Modal>
-    </div>
+    </Paper>
   );
 }
 

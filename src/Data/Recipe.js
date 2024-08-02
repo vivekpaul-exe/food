@@ -1,13 +1,13 @@
 // This is tha page for the complated fucntioons export to be addedin the commit as final FINAL replace the card with content funcions
 
 import React, {useState,useEffect} from 'react';
-import {useNavigate,createSearchParams } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {REACT_APP_SOME_API_KEY} from "../index"
 import Card from '@material-ui/core/Card';
 import {ButtonBase, CircularProgress} from "@material-ui/core"
 import { Icon } from "atomize";
-
+import Vibrant from "node-vibrant"
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,7 +16,7 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -107,13 +107,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
+// export default const favRacipe = []
 export default function Content() {
   const classes = useStyles();
   // const [loading,setLoading] = React.useState(True);
+  const [palette,setPalette] = useState({});
   const [title ,setTitle] = useState('A Title');
   const [summary ,setSummary] =  useState('A summary');
-  const [image , setImage] = useState('https://www.qsrmagazine.com/sites/default/files/styles/slideshow_image/public/slideshow-images/slides/mcdonaldsglobal.jpg?itok=X8uup3iY')
+  const [recimage , setRecimage] = useState('https://www.qsrmagazine.com/sites/default/files/styles/slideshow_image/public/slideshow-images/slides/mcdonaldsglobal.jpg?itok=X8uup3iY')
   const [vegeterian , setVegeterian] = useState('false');
   const [veryHealthy , setVeryHealthy] = useState('false')
   const [recipe,setRecipe] = useState({})
@@ -121,20 +122,26 @@ export default function Content() {
   const [id , setId] = useState('');
   const [fav, setFav] = useState(false);
 	const navigate= useNavigate();
+
+  const image = new Image();
+
     useEffect(()=>{
         async function getRecipe() {
     
           try {
             let response = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${REACT_APP_SOME_API_KEY}`)
              let data = await response.json();
-    
+             
             setTitle(data.recipes[0].title);
-            setImage(data.recipes[0].image)
+            setRecimage(data.recipes[0].image)
             setRecipe(data.recipes[0])
+            
             setVegeterian(data.recipes[0].vegeterian)
             setVeryHealthy(data.recipes[0].veryHealthy)
             setSummary(data.recipes[0].summary)
             setId(data.recipes[0].id)
+            // const paletteData = await Vibrant.from({image}).getPalette();                                     
+            // setPalette(paletteData)
             setShowLoading(false);
 		console.log(data);
           } catch (error) {
@@ -174,7 +181,7 @@ export default function Content() {
           onClick={handleOpen}>
       <CardMedia 
         className={classes.media}
-        image={image}
+        image={recimage}
         title={title}
       /></ButtonBase>
       <Typography className={classes.box_des}>
@@ -195,7 +202,7 @@ export default function Content() {
         
         
         <Typography className={classes.recipe_typo} variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{__html: summary}} />
-        
+        <Typography>{JSON.stringify(palette)}</Typography>
         
       </CardContent>
      </> 
@@ -205,3 +212,8 @@ export default function Content() {
 }
 
 
+function setCookieFavRecipe(key,Value,expirationDays){
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate()+ expirationDays);
+
+}

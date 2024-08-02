@@ -1,25 +1,23 @@
-import React, {useState,useEffect} from 'react';
-import { REACT_APP_SOME_API_KEY } from './index';
+import React from 'react';
+
 import Content from './Data/Recipe';
 // import { keyframes } from "@material-ui/system';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import ContainerIngredients from "./components/Ingredients"
+// import ContainerIngredients from "./components/Ingredients"
 // import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import HorizontalScroll from 'react-scroll-horizontal';
 import Grid from '@material-ui/core/Grid';
 import { Typography, 
           Container , 
           Collapse,
-	List,
-	ListItem,
+	
           Box,Button } from '@material-ui/core';
-import Congrp from './components/Congrp';
+
 import image from "./images/topimage.jpg"
 import Navbar from './components/NavBar/Navbar';
-import SearchModal from './components/NavBar/searchBar';
 // import ingredemo from "./images/Chow mein.jpg"
-//this json daa used in rec con and the second json object usedun ingreeidents 
+//this json data used in rec con and the second json object usedun ingredients 
 export var Rec_Con_list = [{
 	'title':"Chinese Cuisine",
 	'image1':"https://images.pexels.com/photos/5848492/pexels-photo-5848492.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -49,6 +47,7 @@ export var Rec_Con_list = [{
 export var ingredients_list = [{
 	"title":"Fruits",
 	"image":"https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+
 	},{
 	"title":"Flour",
 	"image":"https://images.pexels.com/photos/6294375/pexels-photo-6294375.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -107,7 +106,7 @@ const relevent_recipe = [{
 //
 export default function Develop() {
   const classes = useStyles();
- const [open,setOpen] = React.useState(false);
+ 
  const [checked, setChecked] = React.useState(false);
  const handleClick = () => {
   setChecked((prev) => !prev);
@@ -173,7 +172,7 @@ export default function Develop() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper elevation={0} className={classes.paper_content}>
-          {/* <SearchModal className={classes.search_modal} /> */}
+          
             <Typography className={classes.Heading}>
               Recommended
             </Typography>
@@ -326,7 +325,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     banner_img:{
       padding:0,
-      borderRadius: 12,
+      // borderRadius: 12,
       border: '1px solid rgba(255, 255, 255, 0.125)',
       width :'100%',
       height :'100vh',
@@ -355,7 +354,11 @@ const useStyles = makeStyles((theme: Theme) =>
     rec_relevent:{
       border:'1px solid #fff',
       borderRadius:250,
-      backgroundColor:'#f12342',
+      height:114,
+      backgroundColor:'#f32422',
+      width:114,
+      // borderRadius:150,
+      // backgroundColor:'#f12342',
     },
     nested: {
       paddingLeft: theme.spacing(4),
@@ -436,7 +439,7 @@ marquee_con:{
       fontFamily:'Coolvetica',
     },
     Headingsec:{
-      marginTop:-12,
+      marginTop:4,
 
       fontSize: 24,
       paddingLeft:8,
@@ -460,12 +463,7 @@ marquee_con:{
     rec_content_scroll:{
       height :120,
     },
-    rec_relevent:{
-      height:114,
-      backgroundColor:'#f32422',
-      width:114,
-      borderRadius:150,
-    },
+    
     child:{
       height:114,
       width:114,
@@ -513,6 +511,7 @@ marquee_con:{
       justifyContent:'center',
       display:'flex',
       flexWrap:'wrap',
+      fontFamily:'Cooletica',
       marginTop:'2vh',
     },
     rec_suggestions:{

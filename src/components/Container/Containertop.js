@@ -8,25 +8,18 @@ import dotenv from "dotenv"
 dotenv.config();
 export default function  Containertop() {
   
-  // const apiKey = process.env.API_KEY;
-
-  // const url =`https://api.spoonacular.com/food/jokes/random?apiKey=${apiKey}`;
+  
   const classes = useStyles();
+  // Add the container top to two variables first dex menu second mobile menu
 
   return (
     <Box className={classes.box1}>
-  {/*  <Box className={classes.head}>
-    <svg className ={classes.svg1} viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-<path fill="#FF0066" d="M50.6,-70.4C65,-59.2,75.6,-43.6,81.5,-26.3C87.4,-9,88.5,10.1,82.8,26.6C77,43.2,64.4,57.2,49.4,68.9C34.5,80.7,17.2,90.2,-0.9,91.4C-19,92.6,-38,85.5,-52.7,73.7C-67.5,61.9,-78,45.3,-83.3,27.4C-88.5,9.6,-88.6,-9.6,-82.7,-26.6C-76.8,-43.5,-64.9,-58.2,-50.1,-69.3C-35.3,-80.4,-17.7,-87.9,0.2,-88.2C18.1,-88.6,36.2,-81.7,50.6,-70.4Z" transform="translate(100 100)" />
-</svg>
-
-    </Box> */}
-      <Grid container >
-        <Grid className={classes.griditem} wrap="nowrap" item xs={12} sm={6}>
-       {/* <img  className = {classes.img} src={image}/> */}
-          <Container  className = {classes.text} >
-	  
-               <Box className={classes.boxitem}>
+  
+      <Grid container spacing={3}>
+        
+        <Grid item xs={12} sm={6} className={classes.banner_img} >
+          <Paper elevation={0} className={classes.paper} src={image} >
+          <Box className={classes.boxitem}>
           <Typography className={classes.text}  >
             <Box  className={classes.boxfont}>One should
               </Box>    </Typography>
@@ -59,16 +52,47 @@ export default function  Containertop() {
           
             </Box>
           
+             {/* <img  className={classes.banner_img} alt="complex" src="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg" /> */}
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Paper elevation={0} className={classes.paper_content}>
           
-          </Container>
-                     
-            
-         
+            <Typography className={classes.Heading}>
+              Recommended
+            </Typography>
+            <Box className={classes.rec_type_container}>
+              <Button className={classes.rec_type}>Vegeterian</Button>
+              <Button className={classes.rec_type}>Non-vegeterian</Button>
+              <Button className={classes.rec_type}>Gluten free</Button>
+              <Button className={classes.rec_type}>Seafood</Button>
+            </Box>
+            <Grid container spacing={1} className={classes.rec_type_content}>
+                <Grid item xs={12} sm={6} >
+                  <Content />
+                </Grid>
+                <Grid item xs={12} sm={6} >
+                 <Content />
+                </Grid>
+            </Grid>
+            <Typography className={classes.Headingsec}>People near you</Typography>
+            <Container className={classes.scroll_contain}>
+            <Grid item className={classes.scroll_contain_grid}>
+                <HorizontalScroll className={classes.rec_content_scroll}>
+                  {relevent_recipe.map((object)=>(
+                    <div className={classes.child} key={object.title} >
+                      <Paper elevation={0} style={{ backgroundImage: `url(${object.image})` , backgroundSize:'cover' }} className={classes.rec_relevent}></Paper>
+                    </div>
+                  ))}
+                    
+                    
+                </HorizontalScroll>
+              </Grid>
+
+            </Container>
+          </Paper>
         </Grid>
-        <Grid className={classes.griditem} item xs={12} sm={6}>
-         <Box className={classes.boxitem1}>
-       </Box>
-        </Grid>
+        
       </Grid>
     </Box>
   )

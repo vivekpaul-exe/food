@@ -4,8 +4,8 @@ import {BrowserRouter as Router,
         Routes,
         Route,} from "react-router-dom"
 import StickyFooter from "./components/Footer"
-import Navbar from "./components/NavBar/Navbar"
-import Home from "./components/Home"
+// import Navbar from "./components/NavBar/Navbar"
+// import Home from "./components/Home"
 import { CuisinePage } from "./components/Pages/CuisinePage"
 import { InfoPage} from "./components/Pages/InfoPage"
 import   RecipePage  from "./components/Pages/RecipePage"
@@ -21,7 +21,7 @@ export default function RouteConfig(){
              {/* <Navbar /> */}
              <Routes>
                 <Route path="/" element={<Develop />} />
-                
+                <Route path="/recipe/101" element={<RecipePage />} />
                 <Route path="/info" element={<InfoPage />} />
                 <Route path="/ingredients" element={<IngredientsPage />} />
                 <Route path="/recipe/:id" element={<RecipePage />} />
